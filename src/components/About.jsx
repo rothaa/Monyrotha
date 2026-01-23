@@ -1,46 +1,70 @@
 import React from 'react'
 
 const About = () => {
-    const containerStyles = {
+    const gridStyles = {
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
         gap: '4rem',
         alignItems: 'center',
     }
 
-    const imagePlaceholderStyles = {
-        width: '100%',
-        height: '400px',
-        background: 'var(--bg-card)',
-        borderRadius: '20px',
-        border: '1px solid rgba(255,255,255,0.1)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: 'var(--text-secondary)',
-    }
-
     return (
         <section id="about" className="section">
-            <div className="container" style={containerStyles}>
-                <div className="profile-img-container" style={{ width: '100%', height: '400px', background: 'var(--bg-card)', borderRadius: '20px', border: '1px solid rgba(255, 255, 255, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)' }}>
-                    <img src="/mypic.jpg" alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '20px' }} />
+            <div className="container" style={gridStyles}>
+                <div className="profile-img-container" style={{
+                    width: '100%',
+                    aspectRatio: '1/1',
+                    maxWidth: '450px',
+                    margin: '0 auto',
+                    background: 'var(--bg-card)',
+                    borderRadius: '20px',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'var(--text-secondary)',
+                    overflow: 'hidden',
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.3)'
+                }}>
+                    <img
+                        src="/mypic.jpg"
+                        alt="Profile"
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover'
+                        }}
+                    />
                 </div>
-                <div>
+                <div style={{ padding: '1rem 0' }}>
                     <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '1.5rem' }}>About Me</h2>
-                    <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
-                        I am a dedicated developer with a strong focus on user experience and clean code.
-                        With a background in computer science and design, I bridge the gap between aesthetics and functionality.
+                    <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.8' }}>
+                        I am a dedicated Full Stack Developer with a strong focus on user experience and clean code.
+                        With a background in computer science, I specialize in building performant web applications that solve real-world problems while staying visually stunning.
                     </p>
-                    <div className="skills-container" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                        {['React', 'Node.js', 'TypeScript', 'CSS/Sass', 'Figma', 'Git'].map(skill => (
+                    <div className="skills-container" style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                        {['React', 'Node.js', 'Python', 'Supabase', 'Git', 'CSS/Animations'].map(skill => (
                             <span key={skill} style={{
-                                padding: '0.5rem 1rem',
-                                background: 'rgba(236, 72, 153, 0.1)',
+                                padding: '0.6rem 1.2rem',
+                                background: 'rgba(236, 72, 153, 0.05)',
                                 color: 'var(--accent-primary)',
-                                borderRadius: '8px',
-                                fontSize: '0.9rem'
-                            }}>
+                                border: '1px solid rgba(236, 72, 153, 0.2)',
+                                borderRadius: '50px',
+                                fontSize: '0.85rem',
+                                fontWeight: '600',
+                                transition: 'var(--transition-fast)'
+                            }}
+                                onMouseEnter={e => {
+                                    e.currentTarget.style.background = 'var(--accent-gradient)'
+                                    e.currentTarget.style.color = '#fff'
+                                    e.currentTarget.style.border = '1px solid transparent'
+                                }}
+                                onMouseLeave={e => {
+                                    e.currentTarget.style.background = 'rgba(236, 72, 153, 0.05)'
+                                    e.currentTarget.style.color = 'var(--accent-primary)'
+                                    e.currentTarget.style.border = '1px solid rgba(236, 72, 153, 0.2)'
+                                }}
+                            >
                                 {skill}
                             </span>
                         ))}

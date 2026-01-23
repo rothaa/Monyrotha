@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
+import NumberGuessingGame from './NumberGuessingGame'
 
 const Projects = () => {
+    const [showGame, setShowGame] = useState(false)
+
     const projects = [
         {
             title: 'E-Commerce Dashboard',
@@ -8,14 +11,10 @@ const Projects = () => {
             tags: ['React', 'Chart.js', 'Firebase']
         },
         {
-            title: 'Social Media App',
-            desc: 'A real-time social platform allowing users to share updates, images, and connect with friends.',
-            tags: ['Next.js', 'Socket.io', 'MongoDB']
-        },
-        {
-            title: 'Task Management Tool',
-            desc: 'Productivity application for teams to track progress, assign tasks, and manage deadlines effectively.',
-            tags: ['Vue.js', 'Vuex', 'Tailwind']
+            title: 'Python Number Guessing Game',
+            desc: 'A beginner-friendly game where players guess a random number. Features step-by-step code explanations for Python learners.',
+            tags: ['Python', 'Beginner', 'Game Logic'],
+            isGame: true
         }
     ]
 
@@ -26,6 +25,9 @@ const Projects = () => {
         border: '1px solid rgba(255,255,255,0.05)',
         transition: 'var(--transition-normal)',
         cursor: 'pointer',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column'
     }
 
     const gridStyles = {
@@ -50,21 +52,61 @@ const Projects = () => {
                                 height: '200px',
                                 background: 'rgba(0,0,0,0.2)',
                                 borderRadius: '8px',
-                                marginBottom: '1.5rem'
-                            }}></div>
+                                marginBottom: '1.5rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                background: 'linear-gradient(45deg, rgba(236,72,153,0.1), rgba(217,70,239,0.1))'
+                            }}>
+                                {project.isGame ? (
+                                    <span style={{ fontSize: '3rem' }}>🎮</span>
+                                ) : (
+                                    <span style={{ fontSize: '3rem' }}>💻</span>
+                                )}
+                            </div>
                             <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{project.title}</h3>
-                            <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>{project.desc}</p>
-                            <div style={{ display: 'flex', gap: '0.5rem' }}>
+                            <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', flex: 1 }}>{project.desc}</p>
+
+                            {project.isGame && (
+                                <button
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        setShowGame(!showGame)
+                                    }}
+                                    style={{
+                                        marginBottom: '1.5rem',
+                                        padding: '0.6rem 1rem',
+                                        borderRadius: '8px',
+                                        background: 'rgba(236, 72, 153, 0.1)',
+                                        color: 'var(--accent-primary)',
+                                        border: '1px solid rgba(236, 72, 153, 0.2)',
+                                        fontWeight: '600'
+                                    }}
+                                >
+                                    {showGame ? 'Hide Game' : 'Play In Browser'}
+                                </button>
+                            )}
+
+                            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                                 {project.tags.map(tag => (
                                     <span key={tag} style={{
-                                        fontSize: '0.8rem',
-                                        color: 'var(--accent-secondary)'
+                                        fontSize: '0.75rem',
+                                        color: 'var(--accent-secondary)',
+                                        background: 'rgba(217, 70, 239, 0.05)',
+                                        padding: '0.2rem 0.5rem',
+                                        borderRadius: '4px'
                                     }}>#{tag}</span>
                                 ))}
                             </div>
                         </div>
                     ))}
                 </div>
+
+                {showGame && (
+                    <div className="animate-fade-in" style={{ marginTop: '4rem' }}>
+                        <NumberGuessingGame />
+                    </div>
+                )}
             </div>
         </section>
     )
