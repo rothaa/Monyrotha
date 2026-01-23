@@ -5,6 +5,7 @@ const NumberGuessingGame = () => {
     const [guess, setGuess] = useState('');
     const [message, setMessage] = useState('Guess a number between 1 and 100');
     const [attempts, setAttempts] = useState(0);
+    const [isWon, setIsWon] = useState(false);
     const [isGameOver, setIsGameOver] = useState(false);
     const [shake, setShake] = useState(false);
 
