@@ -89,14 +89,13 @@ const Navbar = () => {
                     <a href="#about" style={{ ...linkStyles, marginLeft: '2rem' }}>About</a>
                     <a href="#education" style={{ ...linkStyles, marginLeft: '2rem' }}>Education</a>
                     <a href="#projects" style={{ ...linkStyles, marginLeft: '2rem' }}>Projects</a>
-                    <a href="#testimonials" style={{ ...linkStyles, marginLeft: '2rem' }}>Testimonials</a>
                     <a href="#comments" style={{ ...linkStyles, marginLeft: '2rem' }}>Comments</a>
                     <a href="#contact" style={{ ...linkStyles, marginLeft: '2rem', color: 'var(--accent-primary)' }}>Contact</a>
                 </div>
 
                 {/* Mobile Menu Overlay */}
                 <div className="mobile-nav" style={{ transform: `translateX(${mobileMenuOpen ? '0' : '100%'})` }}>
-                    {['Home', 'About', 'Education', 'Projects', 'Testimonials', 'Comments', 'Contact'].map((item) => (
+                    {['Home', 'About', 'Education', 'Projects', 'Comments', 'Contact'].map((item) => (
                         <a
                             key={item}
                             href={`#${item.toLowerCase()}`}

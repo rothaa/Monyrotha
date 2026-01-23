@@ -43,7 +43,7 @@ const About = () => {
                         With a background in computer science, I specialize in building performant web applications that solve real-world problems while staying visually stunning.
                     </p>
                     <div className="skills-container" style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                        {['React', 'Node.js', 'Python', 'Supabase', 'Git', 'CSS/Animations'].map(skill => (
+                        {['HTML', 'CSS', 'JavaScript', 'Node.js', 'Python', 'Supabase', 'Git', 'C++', 'C', 'C#', 'Java'].map(skill => (
                             <span key={skill} style={{
                                 padding: '0.6rem 1.2rem',
                                 background: 'rgba(236, 72, 153, 0.05)',
