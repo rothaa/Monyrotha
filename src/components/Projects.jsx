@@ -50,13 +50,12 @@ const Projects = () => {
                         >
                             <div style={{
                                 height: '200px',
-                                background: 'rgba(0,0,0,0.2)',
+                                background: 'linear-gradient(45deg, rgba(236,72,153,0.1), rgba(217,70,239,0.1))',
                                 borderRadius: '8px',
                                 marginBottom: '1.5rem',
                                 display: 'flex',
                                 alignItems: 'center',
-                                justifyContent: 'center',
-                                background: 'linear-gradient(45deg, rgba(236,72,153,0.1), rgba(217,70,239,0.1))'
+                                justifyContent: 'center'
                             }}>
                                 {project.isGame ? (
                                     <span style={{ fontSize: '3rem' }}>🎮</span>

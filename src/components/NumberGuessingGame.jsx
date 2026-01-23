@@ -40,7 +40,7 @@ const NumberGuessingGame = () => {
             setMessage('Too high! Try lower. 📈');
             triggerShake();
         } else {
-            setMessage(`🎉 Correct! You won in ${newAttempts} attempts!`);
+            setMessage(`🎉 Correct! The number was ${targetNumber}. You won in ${newAttempts} attempts!`);
             setIsWon(true);
         }
         setGuess('');
