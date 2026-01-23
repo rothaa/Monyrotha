@@ -118,13 +118,79 @@ const Projects = () => {
                 </div>
 
                 {activeGame && (
-                    <div className="animate-fade-in" style={{ marginTop: '4rem' }}>
-                        {activeGame === 'guessing' && <NumberGuessingGame />}
-                        {activeGame === 'quiz' && <QuizGame />}
-                        {activeGame === 'hangman' && <HangmanGame />}
+                    <div
+                        style={{
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                            background: 'rgba(2, 6, 23, 0.85)',
+                            backdropFilter: 'blur(12px)',
+                            zIndex: 9999,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            padding: '2rem',
+                            animation: 'modalFadeIn 0.3s ease-out'
+                        }}
+                        onClick={() => setActiveGame(null)}
+                    >
+                        <div
+                            style={{
+                                width: '100%',
+                                maxWidth: '800px',
+                                position: 'relative',
+                                animation: 'modalScaleUp 0.3s ease-out'
+                            }}
+                            onClick={e => e.stopPropagation()}
+                        >
+                            <button
+                                onClick={() => setActiveGame(null)}
+                                style={{
+                                    position: 'absolute',
+                                    top: '-40px',
+                                    right: '0',
+                                    background: 'none',
+                                    border: 'none',
+                                    color: '#fff',
+                                    fontSize: '2rem',
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '0.5rem',
+                                    fontWeight: '300',
+                                    transition: 'color 0.2s'
+                                }}
+                                onMouseEnter={e => e.currentTarget.style.color = 'var(--accent-primary)'}
+                                onMouseLeave={e => e.currentTarget.style.color = '#fff'}
+                            >
+                                <span style={{ fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Close</span> ×
+                            </button>
+
+                            <div className="game-wrapper">
+                                {activeGame === 'guessing' && <NumberGuessingGame />}
+                                {activeGame === 'quiz' && <QuizGame />}
+                                {activeGame === 'hangman' && <HangmanGame />}
+                            </div>
+                        </div>
                     </div>
                 )}
             </div>
+
+            <style>{`
+                @keyframes modalFadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                @keyframes modalScaleUp {
+                    from { transform: scale(0.95); opacity: 0; }
+                    to { transform: scale(1); opacity: 1; }
+                }
+                .game-wrapper > div {
+                    margin: 0 auto !important;
+                }
+            `}</style>
         </section>
     )
 }
