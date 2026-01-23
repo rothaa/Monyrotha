@@ -39,8 +39,8 @@ const About = () => {
                 <div style={{ padding: '1rem 0' }}>
                     <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '1.5rem' }}>About Me</h2>
                     <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.8' }}>
-                        I am a dedicated Full Stack Developer with a strong focus on user experience and clean code.
-                        With a background in computer science, I specialize in building performant web applications that solve real-world problems while staying visually stunning.
+                        My name is Mao Monyrotha. I am a third year student at the Faculty of Computer Science in Royal University of Phnom Penh. I want to become a Web Designer and Developer.
+                        Now I am looking for an internship opportunity.
                     </p>
                     <div className="skills-container" style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
                         {['HTML', 'CSS', 'JavaScript', 'Node.js', 'Python', 'Supabase', 'Git', 'C++', 'C', 'C#', 'Java'].map(skill => (

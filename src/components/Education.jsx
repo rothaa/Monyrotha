@@ -3,16 +3,22 @@ import React from 'react'
 const Education = () => {
     const education = [
         {
-            degree: 'Bachelor of Science in Computer Science',
-            institution: 'University of Technology',
-            year: '2020 - 2024',
-            desc: 'Focused on software engineering, algorithms, and web development. Graduated with honors.'
+            degree: 'Studying Bachelor of Science in Computer Science',
+            institution: 'Royal University of Phnom Penh',
+            year: '2024 - Present',
+            desc: 'Focused on Networking and Programming'
         },
         {
-            degree: 'Full Stack Development Bootcamp',
-            institution: 'Tech Academy',
+            degree: 'Graduted High School',
+            institution: 'Hun Sen Balaing High School',
+            year: '2023',
+            desc: 'From grade 10 to 12'
+        },
+        {
+            degree: 'Diploma in Primary School',
+            institution: 'Hun Sen Balaing High School',
             year: '2019',
-            desc: 'Intensive course covering React, Node.js, and modern web practices.'
+            desc: 'From grade 7 to 9'
         }
     ]
 
