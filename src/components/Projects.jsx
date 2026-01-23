@@ -12,21 +12,24 @@ const Projects = () => {
             title: 'Python Hangman Master',
             desc: 'A classic Hangman game with a word bank and lives system. Features interactive React UI and detailed Python source code for learners.',
             tags: ['Python', 'Logic', 'React', 'Playable'],
-            isGame: true
+            isGame: true,
+            icon: '💀'
         },
         {
             id: 'quiz',
             title: 'Python Quiz Master',
             desc: 'An interactive multiple-choice quiz system in Python. Features dynamic scoring, answer validation, and final performance ranking.',
             tags: ['Python', 'Logic', 'Data Structures', 'Playable'],
-            isGame: true
+            isGame: true,
+            icon: '🏆'
         },
         {
             id: 'guessing',
             title: 'Sudden Death Guessing Game',
             desc: 'A high-stakes React version of the guessing game. One wrong move and it is "Game Over". Experience luck with a premium browser UI.',
             tags: ['React', 'JavaScript', 'Game Logic', 'Playable'],
-            isGame: true
+            isGame: true,
+            icon: '🎲'
         }
     ]
 
@@ -69,11 +72,7 @@ const Projects = () => {
                                 alignItems: 'center',
                                 justifyContent: 'center'
                             }}>
-                                {project.isGame ? (
-                                    <span style={{ fontSize: '3rem' }}>🎮</span>
-                                ) : (
-                                    <span style={{ fontSize: '3rem' }}>💻</span>
-                                )}
+                                <span style={{ fontSize: '3rem' }}>{project.icon || '💻'}</span>
                             </div>
                             <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{project.title}</h3>
                             <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', flex: 1 }}>{project.desc}</p>
