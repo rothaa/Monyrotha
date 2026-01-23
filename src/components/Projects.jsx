@@ -9,7 +9,7 @@ const Projects = () => {
     const projects = [
         {
             id: 'hangman',
-            title: 'Python Hangman Master',
+            title: 'Hangman Master',
             desc: 'A classic Hangman game with a word bank and lives system. Features interactive React UI and detailed Python source code for learners.',
             tags: ['Python', 'Logic', 'React', 'Playable'],
             isGame: true,
@@ -17,7 +17,7 @@ const Projects = () => {
         },
         {
             id: 'quiz',
-            title: 'Python Quiz Master',
+            title: 'Quiz Master',
             desc: 'An interactive multiple-choice quiz system in Python. Features dynamic scoring, answer validation, and final performance ranking.',
             tags: ['Python', 'Logic', 'Data Structures', 'Playable'],
             isGame: true,
