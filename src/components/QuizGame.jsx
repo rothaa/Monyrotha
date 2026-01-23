@@ -1,33 +1,128 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+const ALL_QUESTIONS = [
+    {
+        prompt: "What is the correct file extension for Python files?",
+        options: ["A. .pt", "B. .py", "C. .python", "D. .txt"],
+        answer: "B"
+    },
+    {
+        prompt: "Which keyword is used to create a function in Python?",
+        options: ["A. void", "B. function", "C. define", "D. def"],
+        answer: "D"
+    },
+    {
+        prompt: "Which of these is used to display text on the screen?",
+        options: ["A. print()", "B. output()", "C. echo()", "D. display()"],
+        answer: "A"
+    },
+    {
+        prompt: "How do you start a comment in Python?",
+        options: ["A. //", "B. /*", "C. #", "D. --"],
+        answer: "C"
+    },
+    {
+        prompt: "What is the output of print(2 ** 3)?",
+        options: ["A. 6", "B. 8", "C. 9", "D. 5"],
+        answer: "B"
+    },
+    {
+        prompt: "Which data type is used to store multiple items in a single variable?",
+        options: ["A. str", "B. int", "C. list", "D. float"],
+        answer: "C"
+    },
+    {
+        prompt: "How do you create a variable with the numeric value 5?",
+        options: ["A. x = 5", "B. x = int(5)", "C. Both work", "D. None"],
+        answer: "C"
+    },
+    {
+        prompt: "What is the correct way to create a function in Python?",
+        options: ["A. def myFunction():", "B. create myFunction():", "C. function myFunction():", "D. def:myFunction()"],
+        answer: "A"
+    },
+    {
+        prompt: "How do you insert items into a list?",
+        options: ["A. add()", "B. insert()", "C. append()", "D. Both B & C"],
+        answer: "D"
+    },
+    {
+        prompt: "Which method can be used to remove any whitespace from both the beginning and the end of a string?",
+        options: ["A. strip()", "B. trim()", "C. pstrip()", "D. cut()"],
+        answer: "A"
+    },
+    {
+        prompt: "Which method can be used to return a string in upper case case?",
+        options: ["A. upperCase()", "B. toUpperCase()", "C. uppercase()", "D. upper()"],
+        answer: "D"
+    },
+    {
+        prompt: "Which operator is used to multiply numbers?",
+        options: ["A. x", "B. *", "C. #", "D. %"],
+        answer: "B"
+    },
+    {
+        prompt: "Which operator can be used to compare two values?",
+        options: ["A. =", "B. < >", "C. ==", "D. <>"],
+        answer: "C"
+    },
+    {
+        prompt: "What is a correct syntax to return the first character in a string?",
+        options: ["A. x[0]", "B. x.sub(0, 1)", "C. x.get(0)", "D. x{0}"],
+        answer: "A"
+    },
+    {
+        prompt: "Which collection is ordered, changeable, and allows duplicate members?",
+        options: ["A. SET", "B. DICTIONARY", "C. TUPLE", "D. LIST"],
+        answer: "D"
+    },
+    {
+        prompt: "Which collection which is unchangeable?",
+        options: ["A. LIST", "B. TUPLE", "C. DICTIONARY", "D. None"],
+        answer: "B"
+    },
+    {
+        prompt: "How do you start a WHILE loop in Python?",
+        options: ["A. while x > y:", "B. while (x > y)", "C. while x > y {", "D. x > y while:"],
+        answer: "A"
+    },
+    {
+        prompt: "How do you start a FOR loop in Python?",
+        options: ["A. for x in y:", "B. for each x in y:", "C. for x > y:", "D. loop x in y:"],
+        answer: "A"
+    },
+    {
+        prompt: "How do you write a conditional statement in Python?",
+        options: ["A. if x == 5 then:", "B. if x == 5:", "C. if (x == 5)", "D. if x = 5:"],
+        answer: "B"
+    },
+    {
+        prompt: "What is the correct syntax to output the type of a variable or object in Python?",
+        options: ["A. print(typeof(x))", "B. print(type(x))", "C. print(typeOf(x))", "D. print(x.type())"],
+        answer: "B"
+    }
+];
 
 const QuizGame = () => {
-    const questions = [
-        {
-            prompt: "What is the correct file extension for Python files?",
-            options: ["A. .pt", "B. .py", "C. .python", "D. .txt"],
-            answer: "B"
-        },
-        {
-            prompt: "Which keyword is used to create a function in Python?",
-            options: ["A. void", "B. function", "C. define", "D. def"],
-            answer: "D"
-        },
-        {
-            prompt: "Which of these is used to display text on the screen?",
-            options: ["A. print()", "B. output()", "C. echo()", "D. display()"],
-            answer: "A"
-        },
-        {
-            prompt: "How do you start a comment in Python?",
-            options: ["A. //", "B. /*", "C. #", "D. --"],
-            answer: "C"
-        }
-    ];
-
+    const [questions, setQuestions] = useState([]);
     const [currentStep, setCurrentStep] = useState(0);
     const [score, setScore] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
+
+    // Shuffle and pick 10 questions
+    const initializeQuiz = () => {
+        const shuffled = [...ALL_QUESTIONS].sort(() => 0.5 - Math.random());
+        setQuestions(shuffled.slice(0, 10));
+        setCurrentStep(0);
+        setScore(0);
+        setIsFinished(false);
+        setSelectedAnswer(null);
+    };
+
+    useEffect(() => {
+        initializeQuiz();
+    }, []);
 
     const handleAnswer = (choice) => {
         setSelectedAnswer(choice);
@@ -46,10 +141,7 @@ const QuizGame = () => {
     };
 
     const resetQuiz = () => {
-        setCurrentStep(0);
-        setScore(0);
-        setIsFinished(false);
-        setSelectedAnswer(null);
+        initializeQuiz();
     };
 
     const containerStyles = {
@@ -83,6 +175,8 @@ const QuizGame = () => {
         fontWeight: '500'
     });
 
+    if (questions.length === 0) return null;
+
     if (isFinished) {
         return (
             <div style={containerStyles}>
@@ -92,7 +186,7 @@ const QuizGame = () => {
                     Your Score: <span style={{ fontWeight: 'bold', color: '#10b981' }}>{score}</span> / {questions.length}
                 </p>
                 <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>
-                    {score === questions.length ? "Python Pro! 🐍✨" : score >= 2 ? "Solid Foundation! 👍" : "Keep Learning! 📚"}
+                    {score === questions.length ? "Python Pro! 🐍✨" : score >= 7 ? "Solid Foundation! 👍" : score >= 5 ? "Good start! 📚" : "Keep Learning! 📖"}
                 </p>
                 <button
                     onClick={resetQuiz}
