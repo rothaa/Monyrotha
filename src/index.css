@@ -145,3 +145,57 @@ a {
 .floating-blob {
   animation: float 20s infinite ease-in-out;
 }
+
+/* Responsive Design */
+/* Responsive Design */
+@media (max-width: 1024px) {
+  :root {
+    --container-width: 900px;
+    --spacing-xl: 6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --spacing-xl: 4rem;
+    --spacing-lg: 2rem;
+    --spacing-md: 1.5rem;
+    --header-height: 70px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  h1 {
+    font-size: 2.5rem !important;
+    /* Force override for Hero */
+  }
+
+  h2 {
+    font-size: 2rem !important;
+  }
+
+  p {
+    font-size: 1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --spacing-xl: 3rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+}

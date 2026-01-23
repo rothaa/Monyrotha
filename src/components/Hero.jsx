@@ -18,7 +18,7 @@ const Hero = () => {
     const subtextStyles = {
         fontSize: '1.25rem',
         color: 'var(--text-secondary)',
-        maxWidth: '600px',
+        maxWidth: '100%',
         marginBottom: '2.5rem',
     }
 

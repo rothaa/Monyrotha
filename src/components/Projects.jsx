@@ -30,7 +30,7 @@ const Projects = () => {
 
     const gridStyles = {
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
         gap: '2rem',
     }
 
@@ -38,7 +38,7 @@ const Projects = () => {
         <section id="projects" className="section">
             <div className="container">
                 <h2 className="section-title">Featured Projects</h2>
-                <div style={gridStyles}>
+                <div className="project-grid" style={gridStyles}>
                     {projects.map((project, i) => (
                         <div
                             key={i}

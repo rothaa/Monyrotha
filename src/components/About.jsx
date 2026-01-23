@@ -23,7 +23,7 @@ const About = () => {
     return (
         <section id="about" className="section">
             <div className="container" style={containerStyles}>
-                <div style={{ width: '100%', height: '400px', background: 'var(--bg-card)', borderRadius: '20px', border: '1px solid rgba(255, 255, 255, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)' }}>
+                <div className="profile-img-container" style={{ width: '100%', height: '400px', background: 'var(--bg-card)', borderRadius: '20px', border: '1px solid rgba(255, 255, 255, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)' }}>
                     <img src="/mypic.jpg" alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '20px' }} />
                 </div>
                 <div>
@@ -32,7 +32,7 @@ const About = () => {
                         I am a dedicated developer with a strong focus on user experience and clean code.
                         With a background in computer science and design, I bridge the gap between aesthetics and functionality.
                     </p>
-                    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                    <div className="skills-container" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                         {['React', 'Node.js', 'TypeScript', 'CSS/Sass', 'Figma', 'Git'].map(skill => (
                             <span key={skill} style={{
                                 padding: '0.5rem 1rem',
