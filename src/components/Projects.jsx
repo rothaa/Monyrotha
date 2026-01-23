@@ -11,11 +11,6 @@ const Projects = () => {
             tags: ['React', 'Chart.js', 'Firebase']
         },
         {
-            title: 'Classic Guessing Game',
-            desc: 'The traditional "Higher or Lower" game logic in Python. Unlimited attempts with real-time feedback and score tracking.',
-            tags: ['Python', 'Educational', 'Fundamentals']
-        },
-        {
             title: 'Python Quiz Master',
             desc: 'An interactive multiple-choice quiz system in Python. Features dynamic scoring, answer validation, and final performance ranking.',
             tags: ['Python', 'Logic', 'Data Structures']
