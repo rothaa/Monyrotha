@@ -67,6 +67,17 @@ const Navbar = () => {
         cursor: 'pointer',
     }
 
+    const mobileNavOverlayStyles = {
+        position: 'fixed',
+        inset: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backdropFilter: 'blur(5px)',
+        zIndex: 1000,
+        opacity: mobileMenuOpen ? 1 : 0,
+        visibility: mobileMenuOpen ? 'visible' : 'hidden',
+        transition: 'all 0.3s ease',
+    }
+
     return (
         <nav style={navStyles}>
             <div className="container" style={contentStyles}>
@@ -77,6 +88,7 @@ const Navbar = () => {
                     className="mobile-menu-btn"
                     style={mobileMenuBtnStyles}
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    aria-label="Toggle menu"
                 >
                     <span style={{ ...barStyles, transform: mobileMenuOpen ? 'rotate(45deg) translate(5px, 6px)' : 'none' }}></span>
                     <span style={{ ...barStyles, opacity: mobileMenuOpen ? 0 : 1 }}></span>
@@ -94,7 +106,20 @@ const Navbar = () => {
                 </div>
 
                 {/* Mobile Menu Overlay */}
+                {mobileMenuOpen && (
+                    <div
+                        style={mobileNavOverlayStyles}
+                        onClick={() => setMobileMenuOpen(false)}
+                    />
+                )}
+
                 <div className="mobile-nav" style={{ transform: `translateX(${mobileMenuOpen ? '0' : '100%'})` }}>
+                    <button
+                        style={{ position: 'absolute', top: '2rem', right: '2rem', color: 'white', fontSize: '2rem', border: 'none', background: 'transparent' }}
+                        onClick={() => setMobileMenuOpen(false)}
+                    >
+                        &times;
+                    </button>
                     {['Home', 'About', 'Education', 'Projects', 'Comments', 'Contact'].map((item) => (
                         <a
                             key={item}
@@ -102,7 +127,9 @@ const Navbar = () => {
                             style={{
                                 fontSize: '1.5rem',
                                 color: item === 'Contact' ? 'var(--accent-primary)' : 'var(--text-primary)',
-                                fontWeight: '600'
+                                fontWeight: '600',
+                                textDecoration: 'none',
+                                padding: '1rem'
                             }}
                             onClick={() => setMobileMenuOpen(false)}
                         >
@@ -116,3 +143,4 @@ const Navbar = () => {
 }
 
 export default Navbar
+

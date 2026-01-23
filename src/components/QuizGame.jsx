@@ -148,10 +148,11 @@ const QuizGame = () => {
         background: 'rgba(15, 23, 42, 0.9)',
         backdropFilter: 'blur(12px)',
         borderRadius: '20px',
-        padding: '2rem',
+        padding: 'clamp(1rem, 5vw, 2rem)',
         border: '1px solid rgba(236, 72, 153, 0.2)',
         textAlign: 'center',
-        maxWidth: '500px',
+        maxWidth: '100%',
+        width: '500px',
         margin: '2rem auto',
         boxShadow: '0 20px 50px rgba(0, 0, 0, 0.4)',
         color: '#fff'

@@ -40,38 +40,39 @@ const HangmanGame = () => {
         background: 'rgba(15, 23, 42, 0.9)',
         backdropFilter: 'blur(12px)',
         borderRadius: '24px',
-        padding: '2rem',
+        padding: 'clamp(1rem, 5vw, 2rem)',
         border: '1px solid rgba(236, 72, 153, 0.2)',
         textAlign: 'center',
         maxWidth: '600px',
-        margin: '2rem auto',
+        margin: '1rem auto',
         boxShadow: '0 20px 50px rgba(0, 0, 0, 0.4)',
-        color: '#fff'
+        color: '#fff',
+        width: '100%'
     };
 
     const letterBoxStyles = {
         display: 'flex',
         justifyContent: 'center',
-        gap: '0.75rem',
-        margin: '2rem 0',
+        gap: 'min(0.75rem, 2vw)',
+        margin: '1.5rem 0',
         flexWrap: 'wrap'
     };
 
     const letterStyles = {
-        fontSize: '1.5rem',
+        fontSize: 'clamp(0.9rem, 5vw, 1.5rem)',
         fontWeight: '700',
-        paddingBottom: '0.5rem',
+        paddingBottom: '0.25rem',
         borderBottom: '3px solid var(--accent-primary)',
-        width: '30px',
+        width: 'clamp(15px, 6vw, 30px)',
         textAlign: 'center',
-        minHeight: '40px'
+        minHeight: '30px'
     };
 
     const keyboardStyles = {
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(40px, 1fr))',
-        gap: '8px',
-        marginTop: '2rem'
+        gridTemplateColumns: 'repeat(auto-fit, minmax(35px, 1fr))',
+        gap: 'clamp(4px, 1vw, 8px)',
+        marginTop: '1.5rem'
     };
 
     const keyBtnStyles = (letter) => ({

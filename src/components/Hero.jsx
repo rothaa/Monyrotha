@@ -9,14 +9,14 @@ const Hero = () => {
     }
 
     const headingStyles = {
-        fontSize: '4rem',
+        fontSize: 'var(--fs-h1)',
         lineHeight: '1.1',
         fontWeight: '800',
         marginBottom: '1.5rem',
     }
 
     const subtextStyles = {
-        fontSize: '1.25rem',
+        fontSize: 'var(--fs-base)',
         color: 'var(--text-secondary)',
         maxWidth: '100%',
         marginBottom: '2.5rem',
@@ -49,7 +49,7 @@ const Hero = () => {
         <section id="hero" style={sectionStyles}>
             <div className="container">
                 <h1 style={headingStyles} className="animate-slide-up">
-                    Building digital <br />
+                    Exploring and building digital <span className="mobile-break"><br /></span>
                     <span style={{ color: 'var(--accent-primary)' }}>experiences</span> that matter.
                 </h1>
                 <p style={subtextStyles} className="animate-slide-up delay-100">
@@ -59,8 +59,9 @@ const Hero = () => {
                 <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }} className="animate-slide-up delay-200">
                     <a href="#projects" style={buttonStyles}>View My Work</a>
                     <a
-                        href="/CV.pdf"
-                        download
+                        href="/Mao Monyrotha.cv.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         style={secondaryButtonStyles}
                         onMouseEnter={e => {
                             e.currentTarget.style.background = 'rgba(236, 72, 153, 0.1)';
@@ -71,7 +72,7 @@ const Hero = () => {
                             e.currentTarget.style.transform = 'translateY(0)';
                         }}
                     >
-                        Download CV
+                        View My CV
                     </a>
                 </div>
             </div>

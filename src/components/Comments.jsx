@@ -144,11 +144,11 @@ const Comments = () => {
             <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                 <h2 className="section-title">Community Feedback</h2>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'start' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '3rem', alignItems: 'start' }}>
 
                     {/* Form Section */}
-                    <div className="animate-slide-up" style={{ ...glassStyle, padding: '3rem' }}>
-                        <h3 style={{ fontSize: '1.75rem', marginBottom: '2rem', color: 'var(--text-primary)', fontWeight: '600' }}>
+                    <div className="animate-slide-up" style={{ ...glassStyle, padding: 'clamp(1.5rem, 5vw, 3rem)' }}>
+                        <h3 style={{ fontSize: 'var(--fs-h3)', marginBottom: '2rem', color: 'var(--text-primary)', fontWeight: '600' }}>
                             Drop a Message
                         </h3>
                         <form onSubmit={handleSubmit}>
