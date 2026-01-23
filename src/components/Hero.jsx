@@ -33,6 +33,18 @@ const Hero = () => {
         transition: 'transform 0.2s',
     }
 
+    const secondaryButtonStyles = {
+        display: 'inline-block',
+        padding: '1rem 2rem',
+        borderRadius: '50px',
+        background: 'transparent',
+        color: '#fff',
+        fontWeight: '600',
+        border: '1px solid var(--accent-primary)',
+        transition: 'all 0.3s ease',
+        cursor: 'pointer'
+    }
+
     return (
         <section id="hero" style={sectionStyles}>
             <div className="container">
@@ -41,9 +53,27 @@ const Hero = () => {
                     <span style={{ color: 'var(--accent-primary)' }}>experiences</span> that matter.
                 </h1>
                 <p style={subtextStyles} className="animate-slide-up delay-100">
-                    I'm a Full Stack Developer passionate about crafting accessible, pixel-perfect, and performant web applications.
+                    I'm a student of Computer Science, and I'm passionate about crafting accessible, pixel-perfect, and performant web applications.
                 </p>
-                <a href="#projects" style={buttonStyles} className="animate-slide-up delay-200">View My Work</a>
+
+                <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }} className="animate-slide-up delay-200">
+                    <a href="#projects" style={buttonStyles}>View My Work</a>
+                    <a
+                        href="/CV.pdf"
+                        download
+                        style={secondaryButtonStyles}
+                        onMouseEnter={e => {
+                            e.currentTarget.style.background = 'rgba(236, 72, 153, 0.1)';
+                            e.currentTarget.style.transform = 'translateY(-2px)';
+                        }}
+                        onMouseLeave={e => {
+                            e.currentTarget.style.background = 'transparent';
+                            e.currentTarget.style.transform = 'translateY(0)';
+                        }}
+                    >
+                        Download CV
+                    </a>
+                </div>
             </div>
         </section>
     )
