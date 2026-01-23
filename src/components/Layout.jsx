@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
                     disableRotation={false}
                 />
             </div>
-            {/* <Navbar /> */}
+            <Navbar />
             <main style={{ flex: 1 }}>
                 {children}
             </main>
