@@ -45,7 +45,7 @@ const Hero = () => {
         cursor: 'pointer'
     }
 
-    return (
+    return (0
         <section id="hero" style={sectionStyles}>
             <div className="container">
                 <h1 style={headingStyles} className="animate-slide-up">
