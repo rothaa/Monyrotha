@@ -5,7 +5,7 @@ const NumberGuessingGame = () => {
     const [guess, setGuess] = useState('');
     const [message, setMessage] = useState('Guess a number between 1 and 100');
     const [attempts, setAttempts] = useState(0);
-    const [isWon, setIsWon] = useState(false);
+    const [isGameOver, setIsGameOver] = useState(false);
     const [shake, setShake] = useState(false);
 
     useEffect(() => {
@@ -15,9 +15,10 @@ const NumberGuessingGame = () => {
     const resetGame = () => {
         setTargetNumber(Math.floor(Math.random() * 100) + 1);
         setGuess('');
-        setMessage('Guess a number between 1 and 100');
+        setMessage('Guess a number between 1 and 100 (ONE TRY ONLY!)');
         setAttempts(0);
         setIsWon(false);
+        setIsGameOver(false);
     };
 
     const handleGuess = (e) => {
@@ -30,18 +31,17 @@ const NumberGuessingGame = () => {
             return;
         }
 
-        const newAttempts = attempts + 1;
-        setAttempts(newAttempts);
+        setAttempts(1);
+        setIsGameOver(true);
 
-        if (numGuess < targetNumber) {
-            setMessage('Too low! Try higher. 📉');
-            triggerShake();
-        } else if (numGuess > targetNumber) {
-            setMessage('Too high! Try lower. 📈');
-            triggerShake();
-        } else {
-            setMessage(`🎉 Correct! The number was ${targetNumber}. You won in ${newAttempts} attempts!`);
+        if (numGuess === targetNumber) {
+            setMessage(`🎉 YOU WIN! The number was ${targetNumber}. Perfect guess!`);
             setIsWon(true);
+        } else {
+            const difference = numGuess < targetNumber ? 'Too low' : 'Too high';
+            setMessage(`❌ YOU LOSE! You guessed ${numGuess} (${difference}). The number was ${targetNumber}.`);
+            setIsWon(false);
+            triggerShake();
         }
         setGuess('');
     };
@@ -82,7 +82,7 @@ const NumberGuessingGame = () => {
 
     const buttonStyles = {
         padding: '0.8rem 2rem',
-        background: isWon ? 'linear-gradient(135deg, #10b981, #059669)' : 'var(--accent-gradient)',
+        background: isGameOver ? (isWon ? 'linear-gradient(135deg, #10b981, #059669)' : 'linear-gradient(135deg, #ef4444, #dc2626)') : 'var(--accent-gradient)',
         color: '#fff',
         borderRadius: '50px',
         fontWeight: '700',
@@ -97,26 +97,30 @@ const NumberGuessingGame = () => {
 
     return (
         <div style={containerStyles} className="game-container">
-            <h3 style={{ marginBottom: '1rem', color: isWon ? '#10b981' : 'var(--text-primary)' }}>
-                {isWon ? 'Mission Accomplished!' : 'Number Guessing Game'}
+            <h3 style={{
+                marginBottom: '1rem',
+                color: isGameOver ? (isWon ? '#10b981' : '#ef4444') : 'var(--text-primary)'
+            }}>
+                {isGameOver ? (isWon ? 'Mission Accomplished!' : 'Game Over!') : 'Sudden Death Guessing Game'}
             </h3>
 
             <p style={{
                 marginBottom: '1.5rem',
-                color: isWon ? '#fff' : 'var(--text-secondary)',
+                color: isGameOver ? '#fff' : 'var(--text-secondary)',
                 fontSize: '1rem',
-                minHeight: '2.5rem'
+                minHeight: '2.5rem',
+                padding: '0 1rem'
             }}>
                 {message}
             </p>
 
-            {!isWon ? (
+            {!isGameOver ? (
                 <form onSubmit={handleGuess}>
                     <input
                         type="number"
                         value={guess}
                         onChange={(e) => setGuess(e.target.value)}
-                        placeholder="??"
+                        placeholder="Your ONLY guess"
                         style={inputStyles}
                         autoFocus
                     />
@@ -126,7 +130,7 @@ const NumberGuessingGame = () => {
                         onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.02)'}
                         onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
                     >
-                        Submit Guess
+                        Check My Fate
                     </button>
                 </form>
             ) : (
@@ -136,12 +140,12 @@ const NumberGuessingGame = () => {
                     onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.02)'}
                     onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
                 >
-                    Play Again
+                    Try Your Luck Again
                 </button>
             )}
 
             <div style={{ marginTop: '1.5rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                Attempts: <span style={{ color: 'var(--accent-primary)', fontWeight: 'bold' }}>{attempts}</span>
+                {isGameOver ? <span>Total attempts: 1</span> : <span>Good luck!</span>}
             </div>
         </div>
     );
