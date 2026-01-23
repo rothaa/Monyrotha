@@ -11,9 +11,19 @@ const Projects = () => {
             tags: ['React', 'Chart.js', 'Firebase']
         },
         {
-            title: 'Python Number Guessing Game',
-            desc: 'A beginner-friendly game where players guess a random number. Features step-by-step code explanations for Python learners.',
-            tags: ['Python', 'Beginner', 'Game Logic'],
+            title: 'Classic Guessing Game',
+            desc: 'The traditional "Higher or Lower" game logic in Python. Unlimited attempts with real-time feedback and score tracking.',
+            tags: ['Python', 'Educational', 'Fundamentals']
+        },
+        {
+            title: 'Python Quiz Master',
+            desc: 'An interactive multiple-choice quiz system in Python. Features dynamic scoring, answer validation, and final performance ranking.',
+            tags: ['Python', 'Logic', 'Data Structures']
+        },
+        {
+            title: 'Sudden Death Guessing Game',
+            desc: 'A high-stakes React version of the guessing game. One wrong move and it is "Game Over". Experience luck with a premium browser UI.',
+            tags: ['React', 'JavaScript', 'Game Logic'],
             isGame: true
         }
     ]
