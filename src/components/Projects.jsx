@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import NumberGuessingGame from './NumberGuessingGame'
+import QuizGame from './QuizGame'
 
 const Projects = () => {
-    const [showGame, setShowGame] = useState(false)
+    const [activeGame, setActiveGame] = useState(null) // 'guessing', 'quiz', or null
 
     const projects = [
         {
@@ -11,14 +12,17 @@ const Projects = () => {
             tags: ['React', 'Chart.js', 'Firebase']
         },
         {
+            id: 'quiz',
             title: 'Python Quiz Master',
             desc: 'An interactive multiple-choice quiz system in Python. Features dynamic scoring, answer validation, and final performance ranking.',
-            tags: ['Python', 'Logic', 'Data Structures']
+            tags: ['Python', 'Logic', 'Data Structures', 'Playable'],
+            isGame: true
         },
         {
+            id: 'guessing',
             title: 'Sudden Death Guessing Game',
             desc: 'A high-stakes React version of the guessing game. One wrong move and it is "Game Over". Experience luck with a premium browser UI.',
-            tags: ['React', 'JavaScript', 'Game Logic'],
+            tags: ['React', 'JavaScript', 'Game Logic', 'Playable'],
             isGame: true
         }
     ]
@@ -75,19 +79,24 @@ const Projects = () => {
                                 <button
                                     onClick={(e) => {
                                         e.stopPropagation()
-                                        setShowGame(!showGame)
+                                        if (activeGame === project.id) {
+                                            setActiveGame(null)
+                                        } else {
+                                            setActiveGame(project.id)
+                                        }
                                     }}
                                     style={{
                                         marginBottom: '1.5rem',
                                         padding: '0.6rem 1rem',
                                         borderRadius: '8px',
-                                        background: 'rgba(236, 72, 153, 0.1)',
-                                        color: 'var(--accent-primary)',
+                                        background: activeGame === project.id ? 'var(--accent-gradient)' : 'rgba(236, 72, 153, 0.1)',
+                                        color: activeGame === project.id ? '#fff' : 'var(--accent-primary)',
                                         border: '1px solid rgba(236, 72, 153, 0.2)',
-                                        fontWeight: '600'
+                                        fontWeight: '600',
+                                        transition: 'all 0.3s ease'
                                     }}
                                 >
-                                    {showGame ? 'Hide Game' : 'Play In Browser'}
+                                    {activeGame === project.id ? 'Close Game' : 'Play In Browser'}
                                 </button>
                             )}
 
@@ -106,9 +115,9 @@ const Projects = () => {
                     ))}
                 </div>
 
-                {showGame && (
+                {activeGame && (
                     <div className="animate-fade-in" style={{ marginTop: '4rem' }}>
-                        <NumberGuessingGame />
+                        {activeGame === 'guessing' ? <NumberGuessingGame /> : <QuizGame />}
                     </div>
                 )}
             </div>
