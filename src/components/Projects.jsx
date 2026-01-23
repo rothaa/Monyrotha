@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
 import NumberGuessingGame from './NumberGuessingGame'
 import QuizGame from './QuizGame'
+import HangmanGame from './HangmanGame'
 
 const Projects = () => {
-    const [activeGame, setActiveGame] = useState(null) // 'guessing', 'quiz', or null
+    const [activeGame, setActiveGame] = useState(null) // 'guessing', 'quiz', 'hangman', or null
 
     const projects = [
         {
-            title: 'E-Commerce Dashboard',
-            desc: 'A comprehensive dashboard for managing online stores, featuring real-time analytics and inventory management.',
-            tags: ['React', 'Chart.js', 'Firebase']
+            id: 'hangman',
+            title: 'Python Hangman Master',
+            desc: 'A classic Hangman game with a word bank and lives system. Features interactive React UI and detailed Python source code for learners.',
+            tags: ['Python', 'Logic', 'React', 'Playable'],
+            isGame: true
         },
         {
             id: 'quiz',
@@ -117,7 +120,9 @@ const Projects = () => {
 
                 {activeGame && (
                     <div className="animate-fade-in" style={{ marginTop: '4rem' }}>
-                        {activeGame === 'guessing' ? <NumberGuessingGame /> : <QuizGame />}
+                        {activeGame === 'guessing' && <NumberGuessingGame />}
+                        {activeGame === 'quiz' && <QuizGame />}
+                        {activeGame === 'hangman' && <HangmanGame />}
                     </div>
                 )}
             </div>
