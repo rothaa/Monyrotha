@@ -1,11 +1,13 @@
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { supabase } from '../supabaseClient'
 
 const Comments = () => {
     const [comments, setComments] = useState([])
     const [formData, setFormData] = useState({ name: '', message: '' })
     const [loading, setLoading] = useState(true)
+    const commentsContainerRef = useRef(null)
+    const [isHovering, setIsHovering] = useState(false)
 
     // Fetch comments on mount and subscribe to changes
     useEffect(() => {
@@ -30,6 +32,35 @@ const Comments = () => {
             subscription.unsubscribe()
         }
     }, [])
+
+    // Autoscroll effect - Seamless infinite loop
+    useEffect(() => {
+        if (!commentsContainerRef.current || isHovering || comments.length === 0) return
+
+        const container = commentsContainerRef.current
+        let scrollInterval
+
+        const autoScroll = () => {
+            const maxScroll = container.scrollHeight - container.clientHeight
+            const currentScroll = container.scrollTop
+
+            // Check if we've reached or passed the bottom
+            if (currentScroll + 1 >= maxScroll) {
+                // Reset to top instantly for seamless loop
+                container.scrollTop = 0
+            } else {
+                // Continue scrolling down smoothly
+                container.scrollTop += 1
+            }
+        }
+
+        // Start the interval - 40ms gives smooth scrolling
+        scrollInterval = setInterval(autoScroll, 40)
+
+        return () => {
+            if (scrollInterval) clearInterval(scrollInterval)
+        }
+    }, [comments, isHovering])
 
     const fetchComments = async () => {
         try {
@@ -223,7 +254,23 @@ const Comments = () => {
                             </span>
                         </div>
 
-                        <div style={{ maxHeight: '600px', overflowY: 'auto', paddingRight: '1rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                        <div
+                            ref={commentsContainerRef}
+                            onMouseEnter={() => setIsHovering(true)}
+                            onMouseLeave={() => setIsHovering(false)}
+                            style={{
+                                maxHeight: '600px',
+                                overflowY: 'auto',
+                                paddingRight: '1rem',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '1.5rem',
+                                // Hide scrollbar for Chrome, Safari and Opera
+                                scrollbarWidth: 'none', // Firefox
+                                msOverflowStyle: 'none', // IE and Edge
+                            }}
+                            className="hide-scrollbar"
+                        >
                             {loading ? (
                                 <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-secondary)' }}>
                                     <div className="floating-blob" style={{ width: '40px', height: '40px', background: 'var(--accent-primary)', borderRadius: '50%', margin: '0 auto 1rem', opacity: 0.5 }}></div>
